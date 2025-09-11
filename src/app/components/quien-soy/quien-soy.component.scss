@@ -1,16 +1,37 @@
 .about-container {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   padding: 40px 20px;
   background-color: #f5f7fa;
 }
 
+.about-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 30px;
+  flex-direction: column;
+
+  h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #1e3a5f;
+  }
+
+  .about-logo {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+  }
+}
+
 .about-card {
   display: flex;
-  align-items: stretch; 
+  align-items: stretch;
   gap: 40px;
   max-width: 1100px;
-  height: 400px; 
+  height: 400px;
   padding: 30px;
   background: #ffffff;
   border-radius: 16px;
@@ -21,9 +42,6 @@
   flex: 1;
   max-width: 600px;
   color: #333;
-  background-color: rgb(188, 184, 184); 
-  padding: 40px;
-  border-radius: 12px;
 
   h2 {
     font-size: 2rem;
@@ -32,15 +50,13 @@
   }
 
   h3 {
-    font-size: 1.3rem;
+    font-size: 1.6rem;
     margin-bottom: 15px;
-    color: black;
+    color: #4dd0e1;
   }
 
   p {
-    line-height: 1.6;
-    margin-bottom: 15px;
-    font-size: 18px;
+    font-size: 20px;
   }
 
   .game-name {
@@ -49,12 +65,10 @@
   }
 }
 
-
 .scrollable {
   overflow-y: auto;
   padding-right: 10px;
 }
-
 
 .scrollable::-webkit-scrollbar {
   width: 8px;
@@ -84,11 +98,11 @@
   .about-card {
     flex-direction: column;
     text-align: center;
-    height: auto; 
+    height: auto;
   }
 
   .scrollable {
-    max-height: 250px; 
+    max-height: 250px;
   }
 
   .about-photo img {
