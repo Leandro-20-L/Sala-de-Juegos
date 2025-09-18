@@ -3,6 +3,7 @@ import { AuthService } from '../../services/auth.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -18,7 +19,7 @@ export class RegisterComponent {
   loading: boolean = false;
   message: string = '';
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   async onRegister() {
     this.message = '';
@@ -32,10 +33,10 @@ export class RegisterComponent {
       return;
     }
 
-    this.loading = true;
-    const { data, error } = await this.authService.signUp(this.email, this.password);
-    this.loading = false;
-
+    const { data, error, } = await this.authService.signUp(this.email, this.password);
+    console.log("DATA:")
+    console.log(data);
+  
     if (error) {
       Swal.fire({
         icon: 'error',
@@ -50,6 +51,7 @@ export class RegisterComponent {
         text: 'Revisa tu correo electrónico para confirmar la cuenta',
         confirmButtonColor: '#4dd0e1'
       });
+      this.router.navigate(["/home"]);
     }
   }
 }

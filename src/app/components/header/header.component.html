@@ -10,8 +10,18 @@
   </nav>
 
   <div class="auth-buttons">
-    <button routerLink="/login" class="btn btn-login">Login</button>
-    <button routerLink="/register" class="btn btn-signup">Sign-up</button>
+    
+
+     <ng-container *ngIf="!(user$ | async); else loggedIn">
+      <button routerLink="/login" class="btn btn-login">Login</button>
+      <button routerLink="/register" class="btn btn-signup">Sign-up</button>
+    </ng-container>
+
+    
+    <ng-template #loggedIn>
+      <span>{{ (user$ | async)?.email }}</span>
+      <button (click)="logout()">Cerrar sesión</button>
+    </ng-template>
   </div>
 </header>
 
