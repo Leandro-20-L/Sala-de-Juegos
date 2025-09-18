@@ -18,12 +18,12 @@ export class RegisterComponent {
   password: string = '';
   confirmPassword: string = '';
   loading: boolean = false;
-  message: string = '';
+
 
   constructor(private authService: AuthService, private router: Router) {}
 
   async onRegister() {
-    this.message = '';
+    
     if (this.password !== this.confirmPassword) {
       Swal.fire({
       icon: 'warning',

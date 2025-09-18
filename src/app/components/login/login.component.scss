@@ -1,12 +1,10 @@
 .register-container {
-   
   max-width: 400px;
   margin: 50px auto;
   padding: 40px;
-  background: #fff;
+  background: #f5f7fa;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  background: #f5f7fa;
 
   h2 {
     text-align: center;
@@ -31,7 +29,7 @@
     }
   }
 
-  button {
+  .btn-ingresar {
     width: 100%;
     padding: 12px;
     background: #1e3a5f;
@@ -39,6 +37,7 @@
     border: none;
     border-radius: 8px;
     cursor: pointer;
+    margin-top: 10px;
 
     &:hover {
       background: #4dd0e1;
@@ -51,5 +50,47 @@
     text-align: center;
     font-weight: bold;
     color: #e63946;
+  }
+
+  .register-link {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 14px;
+
+    a {
+      color: #1e3a5f;
+      font-weight: bold;
+      text-decoration: none;
+
+      &:hover {
+        color: #4dd0e1;
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+
+.quick-users {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 15px;
+
+  button {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background: #e3eaf2;
+    color: #1e3a5f;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+
+    &:hover {
+      background: #4dd0e1;
+      color: white;
+    }
   }
 }

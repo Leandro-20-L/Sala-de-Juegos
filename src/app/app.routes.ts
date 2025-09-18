@@ -1,10 +1,18 @@
 import { Routes } from '@angular/router';
+import { PreguntadosComponent } from './components/preguntados/preguntados.component';
+import { MayorMenorComponent } from './components/mayor-menor/mayor-menor.component';
+import { MortalClickComponent } from './components/mortal-click/mortal-click.component';
+import { AhorcadoComponent } from './components/ahorcado/ahorcado.component';
 
 export const routes: Routes = [
     {
-        path: '',
-        redirectTo: 'home',
-        pathMatch: 'full'
+        path: 'juegos',
+        children: [
+           { path: 'mayor-menor', component: MayorMenorComponent },
+            { path: 'preguntados', component: PreguntadosComponent },
+            { path: 'mortal-click', component: MortalClickComponent },
+            { path: 'ahorcado', component: AhorcadoComponent },
+        ]
     },
     {
         path: 'home', loadComponent: () => import('./components/home/home.component').then(m => m.HomeComponent)
@@ -17,5 +25,13 @@ export const routes: Routes = [
     },
     {
         path: 'register', loadComponent: () => import('./components/register/register.component').then(m => m.RegisterComponent)
+    },
+    {
+        path: '',
+        redirectTo: 'home',
+        pathMatch: 'full'
+    },
+    { path: '**', 
+        redirectTo: 'home' 
     }
 ];

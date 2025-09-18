@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-mayor-menor',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './mayor-menor.component.html',
   styleUrl: './mayor-menor.component.scss'
 })

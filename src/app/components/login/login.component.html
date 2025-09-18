@@ -1,5 +1,5 @@
 <div class="register-container">
-  <h2>Iniciar sesion</h2>
+  <h2>Iniciar sesión</h2>
 
   <form (ngSubmit)="login()">
     <div class="form-group">
@@ -24,11 +24,26 @@
       />
     </div>
 
+    <h2>Usuarios de acceso rápido</h2>
+    <div class="quick-users">
+      <button type="button" (click)="llenarUsers('user1@gmail.com','123456')">
+        Usuario 1
+      </button>
+      <button type="button" (click)="llenarUsers('user2@gmail.com','123456')">
+        Usuario 2
+      </button>
+      <button type="button" (click)="llenarUsers('user3@gmail.com','123456')">
+        Usuario 3
+      </button>
+    </div>
   
-    <button type="submit">
+    <button type="submit" class="btn-ingresar">
       Ingresar
     </button>
   </form>
 
-  <p *ngIf="message" class="message">{{ message }}</p>
+  <p class="register-link">
+    ¿No tienes cuenta?
+    <a routerLink="/register">Regístrate aquí</a>
+  </p>
 </div>
