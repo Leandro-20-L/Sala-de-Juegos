@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {supabase } from "../supabase.client";
 import { User, SupabaseClient } from '@supabase/supabase-js';
 import { BehaviorSubject } from 'rxjs';
+import { LogService } from './log.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class AuthService {
   
   private userSubject = new BehaviorSubject<User | null>(null);
   public user$ = this.userSubject.asObservable(); //para exponer el observable
-  constructor() {
+  constructor(private log : LogService) {
      supabase.auth.onAuthStateChange((_event, session) => {
       this.userSubject.next(session?.user || null);
     });
@@ -23,6 +24,10 @@ export class AuthService {
     });
 
     if (error) throw error;
+
+    if(!error && data.user){
+      await this.log.RegistraLog(data.user.id,"login");
+    }
 
     this.userSubject.next(data.user); 
     return data;

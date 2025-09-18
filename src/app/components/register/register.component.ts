@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 
 
+
 @Component({
   selector: 'app-register',
   imports: [FormsModule,CommonModule],
@@ -34,6 +35,7 @@ export class RegisterComponent {
     }
 
     const { data, error, } = await this.authService.signUp(this.email, this.password);
+
     console.log("DATA:")
     console.log(data);
   
