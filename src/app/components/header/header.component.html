@@ -19,8 +19,8 @@
 
     
     <ng-template #loggedIn>
-      <span>{{ (user$ | async)?.email }}</span>
-      <button (click)="logout()">Cerrar sesión</button>
+      <span class="user-email">{{ (user$ | async)?.email }}</span>
+      <button class="btn-logout" (click)="logout()">Cerrar sesión</button>
     </ng-template>
   </div>
 </header>

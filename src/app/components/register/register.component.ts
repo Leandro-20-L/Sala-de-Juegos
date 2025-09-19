@@ -33,7 +33,7 @@ export class RegisterComponent {
     });
       return;
     }
-
+  
     const { data, error, } = await this.authService.signUp(this.email, this.password);
 
     console.log("DATA:")
@@ -43,7 +43,7 @@ export class RegisterComponent {
       Swal.fire({
         icon: 'error',
         title: 'Error en el registro',
-        text: error.message,
+        text: this.traducirErrorSupabase(error),
         confirmButtonColor: '#e63946'
       });
     } else {
@@ -56,4 +56,20 @@ export class RegisterComponent {
       this.router.navigate(["/home"]);
     }
   }
+
+  private traducirErrorSupabase(error: any): string {
+  if (!error || !error.message) return 'Ha ocurrido un error inesperado.';
+
+  switch (true) {
+    case error.message.includes("User already registered"):
+      return "El correo ya está registrado.";
+    case error.message.includes("Password should be at least 6 characters"):
+      return "La contraseña debe tener al menos 6 caracteres.";
+    case error.message.includes("Invalid login credentials"):
+      return "Correo o contraseña incorrectos.";
+    default:
+      return "Error en la autenticación. Intenta nuevamente.";
+  }
+}
+
 }

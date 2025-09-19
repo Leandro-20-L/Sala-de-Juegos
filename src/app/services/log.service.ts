@@ -6,10 +6,13 @@ import { supabase } from '../supabase.client';
 })
 export class LogService {
 
-  async RegistraLog(idUsuario:string , accion: string){
+  async RegistraLog(idUsuario:string , accion: string, usuario: string){
     const {data, error} = await supabase.from("user_logs").insert([{
       user_id: idUsuario,
-      accion:accion
+       email: usuario,
+      accion:accion,
+     
+   
     }]);
 
     if (error) {

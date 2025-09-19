@@ -26,7 +26,7 @@ export class AuthService {
     if (error) throw error;
 
     if(!error && data.user){
-      await this.log.RegistraLog(data.user.id,"login");
+      await this.log.RegistraLog(data.user.id,"login",data.user.email!);
     }
 
     this.userSubject.next(data.user); 
@@ -57,7 +57,12 @@ export class AuthService {
   }
 
   async  signUp(email: string ,password:string){
-    return await supabase.auth.signUp({ email, password });
+    const {data, error} = await supabase.auth.signUp({ email, password });
+    if(!error && data.user){
+      await this.log.RegistraLog(data.user.id,"registro", data.user.email!);
+    }
+
+    return {data,error};
   }
 
   get currentUser() {
