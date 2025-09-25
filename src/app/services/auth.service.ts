@@ -65,7 +65,5 @@ export class AuthService {
     return {data,error};
   }
 
-  get currentUser() {
-    return this.userSubject.value; 
-  }
+  
 }

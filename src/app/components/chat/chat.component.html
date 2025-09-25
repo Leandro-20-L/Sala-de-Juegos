@@ -1,0 +1,25 @@
+<div class="chat-container">
+  
+  <div class="messages" *ngIf="mensajes$ | async as mensajes">
+    <div *ngFor="let msg of mensajes" class="message">
+      <div class="meta">
+        <strong>{{ msg.user_id }}</strong>
+        <small>{{ msg.creado_en | date:'shortTime' }}</small>
+      </div>
+      <div class="text">
+        {{ msg.contenido }}
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="input-container">
+    <input
+      type="text"
+      [(ngModel)]="nuevoMensaje"
+      placeholder="Escribe un mensaje..."
+      (keyup.enter)="enviar()"
+    />
+    <button (click)="enviar()">Enviar</button>
+  </div>
+</div>
