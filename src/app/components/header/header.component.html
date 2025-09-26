@@ -7,6 +7,7 @@
   <nav class="nav-links">
     <a routerLink="/home" routerLinkActive="active">Home</a>
     <a routerLink="/about" routerLinkActive="active">About Me</a>
+    
   </nav>
 
   <div class="auth-buttons">
@@ -21,6 +22,7 @@
     <ng-template #loggedIn>
       <span class="user-email">{{ (user$ | async)?.email }}</span>
       <button class="btn-logout" (click)="logout()">Cerrar sesión</button>
+      <img routerLink="/chat" src="chat.png" alt="" class="chat-button">
     </ng-template>
   </div>
 </header>

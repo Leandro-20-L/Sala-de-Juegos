@@ -16,6 +16,7 @@ export class ChatComponent {
   mensajes$!: Observable<any[]>;
   nuevoMensaje = '';
   userId: string | null = null;
+  userEmail: string | null = null;
 
   constructor(
     private chatService: ChatService,
@@ -24,6 +25,7 @@ export class ChatComponent {
     this.mensajes$ = this.chatService.mensajes$;
     this.authService.user$.subscribe((u) => {
       this.userId = u?.id ?? null;
+      this.userEmail = u?.email ?? null;
     });
   }
 
