@@ -1,0 +1,42 @@
+.juego-container {
+  text-align: center;
+  padding: 20px;
+}
+
+.cartas {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 20px 0;
+
+  .carta img {
+    width: 150px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  }
+
+  .oculta {
+    filter: blur(10px) brightness(0.7);
+  }
+}
+
+.botones {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+
+  button {
+    padding: 10px 20px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 8px;
+    background: #007bff;
+    color: white;
+    cursor: pointer;
+
+    &:hover {
+      background: #0056b3;
+    }
+  }
+}

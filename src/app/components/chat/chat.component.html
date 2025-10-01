@@ -1,16 +1,20 @@
 <div class="chat-container">
   
   <div class="messages" *ngIf="mensajes$ | async as mensajes">
-    <div *ngFor="let msg of mensajes" class="message">
-      <div class="meta">
-        <strong>{{ userEmail }}</strong>
-        <small>{{ msg.creado_en | date:'shortTime' }}</small>
-      </div>
-      <div class="text">
-        {{ msg.contenido }}
-      </div>
+  <div 
+    *ngFor="let msg of mensajes" 
+    class="message"
+    [ngClass]="msg.email === userEmail ? 'mine' : 'theirs'"
+  >
+    <div class="meta">
+      <strong>{{ msg.email }}</strong>
+      <small>{{ msg.creado_en | date:'shortTime' }}</small>
+    </div>
+    <div class="text">
+      {{ msg.contenido }}
     </div>
   </div>
+</div>
 
   
   <div class="input-container">

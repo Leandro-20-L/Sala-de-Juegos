@@ -1,1 +1,18 @@
-<p>mayor-menor works!</p>
+<div class="juego-container">
+  <h1>Mayor o Menor</h1>
+  <h2>Puntos: {{ puntos }}</h2>
+
+  <div class="cartas">
+    <div class="carta">
+      <img [src]="cartaActual?.img" alt="Carta actual">
+    </div>
+    <div class="carta">
+      <img [src]="cartaOculta?.img" [class.oculta]="true" alt="Carta oculta">
+    </div>
+  </div>
+
+  <div class="botones">
+    <button (click)="elegir('menor')">Menor</button>
+    <button (click)="elegir('mayor')">Mayor</button>
+  </div>
+</div>

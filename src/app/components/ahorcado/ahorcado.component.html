@@ -1,1 +1,25 @@
-<p>ahorcado works!</p>
+<div class="ahorcado-container">
+  <h1>Juego del Ahorcado</h1>
+
+ 
+  <img [src]="imagenes[intentos]" alt="Ahorcado" class="imagen-ahorcado"/>
+
+  
+  <h2 class="palabra">{{ palabra_oculta }}</h2>
+
+  
+  <div class="teclado">
+    <button *ngFor="let letra of letras"
+            (click)="verificarLetra(letra)"
+            [disabled]="letrasUsadas.includes(letra) || juegoTerminado">
+      {{ letra }}
+    </button>
+  </div>
+
+  
+  <div *ngIf="juegoTerminado" class="resultado">
+    <p *ngIf="gano">🎉 ¡Ganaste! La palabra era {{ palabra_actual }}</p>
+    <p *ngIf="!gano">💀 Perdiste... La palabra era {{ palabra_actual }}</p>
+    <button (click)="nuevaPalabra()">Jugar de nuevo</button>
+  </div>
+</div>
