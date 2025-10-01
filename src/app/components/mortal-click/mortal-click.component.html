@@ -1,1 +1,17 @@
-<p>mortal-click works!</p>
+<div class="click-mortal">
+  <h1>CLICK MORTAL</h1>
+
+  <div *ngIf="!jugando">
+    <h3>Elige un modo:</h3>
+    <button *ngFor="let modo of modos" (click)="iniciarJuego(modo.tiempo)">
+      {{ modo.nombre }}
+    </button>
+  </div>
+
+  <div *ngIf="jugando">
+    <h2>Tiempo: {{ tiempoRestante }}s</h2>
+    <h2>Puntaje: {{ puntaje }}</h2>
+
+    <button class="click-button" (click)="clickear()">¡CLICK AQUÍ!</button>
+  </div>
+</div>

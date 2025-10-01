@@ -1,0 +1,31 @@
+.click-mortal {
+  text-align: center;
+  padding: 20px;
+
+  button {
+    margin: 10px;
+    padding: 15px 25px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background: #ff4444;
+    color: white;
+    transition: transform 0.1s;
+
+    &:hover {
+      transform: scale(1.1);
+      background: #cc0000;
+    }
+  }
+
+  .click-button {
+    margin-top: 20px;
+    padding: 30px 50px;
+    font-size: 2em;
+    font-weight: bold;
+    border-radius: 12px;
+    background: #28a745;
+    color: white;
+  }
+}
