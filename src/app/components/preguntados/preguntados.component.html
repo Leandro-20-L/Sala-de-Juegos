@@ -1,1 +1,18 @@
-<p>preguntados works!</p>
+<div *ngIf="preguntas[indice] as pregunta" class="quiz-container">
+  <h2 class="quiz-question">
+    {{ pregunta.question }}
+  </h2>
+
+  <div class="options">
+    <button 
+      *ngFor="let opcion of pregunta.opciones" 
+      class="option-btn"
+      (click)="responder(opcion)">
+      {{ opcion }}
+    </button>
+  </div>
+</div>
+
+<ng-template #cargando>
+  <p class="loading"> Cargando preguntas...</p>
+</ng-template>

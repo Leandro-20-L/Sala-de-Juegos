@@ -21,7 +21,7 @@ export class LoginComponent {
   password: string = '';
   confirmPassword: string = '';
   loading: boolean = false;
-  message: string = '';
+  
   async login(){
     
     try {

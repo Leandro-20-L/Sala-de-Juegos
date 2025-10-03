@@ -1,12 +1,10 @@
 .register-container {
-   
   max-width: 400px;
   margin: 50px auto;
   padding: 40px;
-  background: #fff;
+  background: #f5f7fa;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  background: #f5f7fa;
 
   h2 {
     text-align: center;
@@ -20,7 +18,7 @@
     label {
       display: block;
       font-weight: bold;
-      margin-bottom: 5px;
+      margin-bottom: 10px;
     }
 
     input {
@@ -28,6 +26,15 @@
       padding: 10px;
       border-radius: 8px;
       border: 1px solid #ccc;
+    }
+
+    
+    small {
+      display: block;
+      margin-top: 5px;
+      font-size: 0.85rem;
+      color: #e63946; 
+      font-weight: 500;
     }
   }
 
@@ -38,18 +45,17 @@
     color: #fff;
     border: none;
     border-radius: 8px;
+    margin-top: 10px;
     cursor: pointer;
 
     &:hover {
       background: #4dd0e1;
       transition: 0.3s;
     }
-  }
 
-  .message {
-    margin-top: 15px;
-    text-align: center;
-    font-weight: bold;
-    color: #e63946;
+    &:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
   }
 }

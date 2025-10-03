@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
-  imports: [FormsModule,CommonModule],
+  imports: [FormsModule,CommonModule,ReactiveFormsModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
@@ -18,27 +18,43 @@ export class RegisterComponent {
   password: string = '';
   confirmPassword: string = '';
   loading: boolean = false;
+  registerForm!: FormGroup;
 
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router,private fb : FormBuilder) {}
+
+  ngOnInit(): void {
+    this.registerForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [
+        Validators.required,
+        Validators.minLength(6)
+        
+      ]],
+      confirmPassword: ['', Validators.required]
+    }, { validators: this.passwordsIguales });
+  }
+  
+  private passwordsIguales(form: FormGroup) {
+  const pass = form.get('password')?.value;
+  const confirm = form.get('confirmPassword')?.value;
+  return pass === confirm ? null : { passwordsMismatch: true };
+}
 
   async onRegister() {
     
-    if (this.password !== this.confirmPassword) {
+   if (this.registerForm.invalid) {
       Swal.fire({
-      icon: 'warning',
-      title: 'Contraseñas no coinciden',
-      text: 'Por favor, verifica que ambas contraseñas sean iguales',
-      confirmButtonColor: '#1e3a5f'
-    });
+        icon: 'warning',
+        title: 'Formulario inválido',
+        text: 'Revisa los campos antes de continuar'
+      });
       return;
     }
-  
-    const { data, error, } = await this.authService.signUp(this.email, this.password);
-
-    console.log("DATA:")
-    console.log(data);
-  
+   
+    const { email, password } = this.registerForm.value;
+    const { data, error } = await this.authService.signUp(email, password);
+    
     if (error) {
       Swal.fire({
         icon: 'error',
@@ -50,10 +66,10 @@ export class RegisterComponent {
       Swal.fire({
         icon: 'success',
         title: '¡Cuenta creada!',
-        text: 'Revisa tu correo electrónico para confirmar la cuenta',
+        text: `Bienvenido ${this.email}`,
         confirmButtonColor: '#4dd0e1'
       });
-      this.router.navigate(["/home"]);
+      this.router.navigate(['/home']);
     }
   }
 
