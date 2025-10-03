@@ -13,6 +13,8 @@ export class PreguntadosService {
 
   constructor(private http: HttpClient) {}
 
+
+//esta function devuelve un observable
   getPreguntas(limit: number, page: number, categoria: string): Observable<{ questions: Pregunta[] }> {
   const headers = new HttpHeaders({
     'Authorization': this.apiKey

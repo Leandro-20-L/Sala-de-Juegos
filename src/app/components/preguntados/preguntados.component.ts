@@ -50,6 +50,8 @@ export class PreguntadosComponent {
     }
   }
 
+  // y aca mapeo lo que me trae la api mezclando answer correcta con la incorrecta
+
   private cargarPreguntas(categoria: string) {
     this.service.getPreguntas(10, 1, categoria).subscribe({
       next: (data) => {

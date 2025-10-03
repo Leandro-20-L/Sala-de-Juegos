@@ -16,9 +16,9 @@ export class MortalClickComponent {
     interval: any;
 
      modos = [
-    { nombre: 'Fácil (15s)', tiempo: 15 },
-    { nombre: 'Normal (10s)', tiempo: 10 },
-    { nombre: 'Difícil (5s)', tiempo: 5 }
+    { nombre: 'Fácil (10s)', tiempo: 10 },
+    { nombre: 'Normal (5s)', tiempo: 5 },
+    { nombre: 'Difícil (2s)', tiempo: 2 }
   ];
 
   iniciarJuego(segundos:number){
@@ -48,7 +48,7 @@ export class MortalClickComponent {
     let mensaje = '';
     let icono : 'success' | 'error' | 'warning' | 'info' | 'question' = 'info';
     if (this.puntaje < 10) {
-      mensaje = 'Que asco';
+      mensaje = 'Mediocre';
       icono = 'error';
     } else if (this.puntaje < 20) {
       mensaje = 'Aceptable ⚡';

@@ -14,7 +14,6 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 export class ChatComponent {
   
   mensajes$!: Observable<any[]>;
-  nuevoMensaje = '';
   userId: string | null = null;
   userEmail: string | null = null;
   chatForm!: FormGroup;
@@ -34,6 +33,7 @@ export class ChatComponent {
       this.userId = u?.id ?? null;
       this.userEmail = u?.email ?? null;
     });
+    //aca dentro del contruct se suscribe al observable user$ y obtiene los datos de session 
   }
 
   enviar() {

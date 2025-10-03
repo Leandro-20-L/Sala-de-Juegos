@@ -37,19 +37,20 @@ export class AhorcadoComponent implements OnInit {
   }
 
   nuevaPalabra() {
-    // elegir palabra random
+   
     this.palabra_actual = this.palabras[Math.floor(Math.random() * this.palabras.length)];
     
-    // armar palabra oculta con guiones bajos
     this.palabra_oculta = "_ ".repeat(this.palabra_actual.length).trim();
     
-    // resetear estado
+    
     this.letrasUsadas = [];
     this.intentos = 0;
     this.juegoTerminado = false;
     this.gano = false;
   }
 
+  //aca se pushea las letras usadas y luego se compara si esta en la palabra actual se la recorre con 
+  //un for y se guarda en un nuevo array y lueg  se une con la oculta 
   verificarLetra(letra: string) {
     if (this.juegoTerminado || this.letrasUsadas.includes(letra)) return;
 
@@ -64,7 +65,7 @@ export class AhorcadoComponent implements OnInit {
       }
       this.palabra_oculta = nueva.join(" ");
 
-      // si no quedan "_", el jugador ganó
+      
       if (!this.palabra_oculta.includes("_")) {
         this.juegoTerminado = true;
         this.gano = true;

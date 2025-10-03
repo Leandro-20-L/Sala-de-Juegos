@@ -9,6 +9,7 @@ export class ChatService {
 
   private mensajesSubject = new BehaviorSubject<any[]>([]);
   mensajes$ = this.mensajesSubject.asObservable();
+  //aca este objeto mantiene en memmoria el listado de mensajes 
 
   constructor() {
     
@@ -16,6 +17,7 @@ export class ChatService {
     this.subscribirMensajes();
   }
 
+  //aca se hace un SELECT y llena el Behavior 
   private async cargarMensajes() {
     const { data, error } = await supabase
       .from('mensajes')
@@ -27,6 +29,7 @@ export class ChatService {
     }
   }
 
+  // y la diferencia con este que hago el insert a la db pero no actualizo el Behavior 
    async enviarMensaje(userId: string,  email: string,contenido: string) {
     const { error } = await supabase
       .from('mensajes')
@@ -34,6 +37,7 @@ export class ChatService {
     if (error) console.error(error);
   }
 
+  //y este metod escucha el cambio en tiempo real y inserta los nuevos mensajes al behavior 
   private subscribirMensajes() {
     supabase
       .channel('mensajes')
