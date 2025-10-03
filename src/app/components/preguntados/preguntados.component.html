@@ -1,6 +1,7 @@
 <div *ngIf="preguntas[indice] as pregunta" class="quiz-container">
   <h2 class="quiz-question">
     {{ pregunta.question }}
+    <h3>Puntaje {{puntaje}}/{{preguntas.length}}</h3>
   </h2>
 
   <div class="options">
@@ -12,7 +13,3 @@
     </button>
   </div>
 </div>
-
-<ng-template #cargando>
-  <p class="loading"> Cargando preguntas...</p>
-</ng-template>

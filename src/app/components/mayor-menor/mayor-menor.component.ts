@@ -4,7 +4,7 @@ import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-mayor-menor',
-  imports: [RouterLink],
+  imports: [],
   templateUrl: './mayor-menor.component.html',
   styleUrl: './mayor-menor.component.scss'
 })

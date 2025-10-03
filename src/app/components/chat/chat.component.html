@@ -1,29 +1,34 @@
 <div class="chat-container">
-  
   <div class="messages" *ngIf="mensajes$ | async as mensajes">
-  <div 
-    *ngFor="let msg of mensajes" 
-    class="message"
-    [ngClass]="msg.email === userEmail ? 'mine' : 'theirs'"
-  >
-    <div class="meta">
-      <strong>{{ msg.email }}</strong>
-      <small>{{ msg.creado_en | date:'shortTime' }}</small>
-    </div>
-    <div class="text">
-      {{ msg.contenido }}
+    <div 
+      *ngFor="let msg of mensajes" 
+      class="message"
+      [ngClass]="msg.user_id === userId ? 'mine' : 'theirs'"
+    >
+      <div class="meta">
+        <span class="email">{{ msg.email || 'Anon' }}</span>
+        <br>
+        <span class="time">{{ msg.creado_en | date:'shortTime' }}</span>
+      </div>
+      <div class="text">
+        {{ msg.contenido }}
+      </div>
     </div>
   </div>
-</div>
 
-  
-  <div class="input-container">
+  <form [formGroup]="chatForm" (ngSubmit)="enviar()" class="input-container">
     <input
       type="text"
-      [(ngModel)]="nuevoMensaje"
+      formControlName="mensaje"
       placeholder="Escribe un mensaje..."
-      (keyup.enter)="enviar()"
     />
-    <button (click)="enviar()">Enviar</button>
-  </div>
+    <button type="submit" [disabled]="chatForm.invalid">Enviar</button>
+  </form>
+
+  <small *ngIf="chatForm.get('mensaje')?.hasError('required')" class="error">
+    El mensaje no puede estar vacío
+  </small>
+  <small *ngIf="chatForm.get('mensaje')?.hasError('maxlength')" class="error">
+    Máximo de 200 caracteres alcanzado
+  </small>
 </div>

@@ -19,7 +19,7 @@ export class ChatService {
   private async cargarMensajes() {
     const { data, error } = await supabase
       .from('mensajes')
-      .select('id, contenido, creado_en, user_id')
+      .select('id, contenido, creado_en, user_id,email')
       .order('creado_en', { ascending: true });
 
     if (!error && data) {
@@ -27,10 +27,10 @@ export class ChatService {
     }
   }
 
-   async enviarMensaje(userId: string, contenido: string) {
+   async enviarMensaje(userId: string,  email: string,contenido: string) {
     const { error } = await supabase
       .from('mensajes')
-      .insert([{ user_id: userId, contenido }]);
+      .insert([{ user_id: userId,email, contenido }]);
     if (error) console.error(error);
   }
 
