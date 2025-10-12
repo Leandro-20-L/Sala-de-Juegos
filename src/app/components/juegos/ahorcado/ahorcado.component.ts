@@ -3,8 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
+  standalone: false,
   selector: 'app-ahorcado',
-  imports: [FormsModule,CommonModule],
+  
   templateUrl: './ahorcado.component.html',
   styleUrl: './ahorcado.component.scss'
 })
@@ -31,6 +32,7 @@ export class AhorcadoComponent implements OnInit {
   maxIntentos: number = this.imagenes.length - 1;
   juegoTerminado: boolean = false;
   gano: boolean = false;
+  puntaje : number = 0; 
 
   ngOnInit() {
     this.nuevaPalabra();
@@ -39,6 +41,7 @@ export class AhorcadoComponent implements OnInit {
   nuevaPalabra() {
    
     this.palabra_actual = this.palabras[Math.floor(Math.random() * this.palabras.length)];
+    console.log(this.palabra_actual)
     
     this.palabra_oculta = "_ ".repeat(this.palabra_actual.length).trim();
     
@@ -61,6 +64,7 @@ export class AhorcadoComponent implements OnInit {
       for (let i = 0; i < this.palabra_actual.length; i++) {
         if (this.palabra_actual[i] === letra) {
           nueva[i] = letra;
+           
         }
       }
       this.palabra_oculta = nueva.join(" ");
@@ -69,6 +73,7 @@ export class AhorcadoComponent implements OnInit {
       if (!this.palabra_oculta.includes("_")) {
         this.juegoTerminado = true;
         this.gano = true;
+        this.puntaje++;
       }
 
     } else {
@@ -76,6 +81,7 @@ export class AhorcadoComponent implements OnInit {
       if (this.intentos >= this.maxIntentos) {
         this.juegoTerminado = true;
         this.gano = false;
+        this.puntaje = 0; 
       }
     }
   }

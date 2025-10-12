@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component , ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { ChatService } from '../../services/chat.service';
 import { AuthService } from '../../services/auth.service';
 import { Observable } from 'rxjs';
@@ -18,6 +18,8 @@ export class ChatComponent {
   userEmail: string | null = null;
   chatForm!: FormGroup;
 
+  @ViewChild('messagesContainer') private messagesContainer!: ElementRef;
+
   constructor(
     private chatService: ChatService,
     private authService: AuthService,
@@ -34,6 +36,10 @@ export class ChatComponent {
       this.userEmail = u?.email ?? null;
     });
     //aca dentro del contruct se suscribe al observable user$ y obtiene los datos de session 
+
+    this.mensajes$.subscribe(() => {
+    setTimeout(() => this.scrollToBottom(), 100); 
+});
   }
 
   enviar() {
@@ -43,4 +49,13 @@ export class ChatComponent {
     this.chatService.enviarMensaje(this.userId,this.userEmail, contenido);
     this.chatForm.reset();
   }
+
+  private scrollToBottom(): void {
+  try {
+    this.messagesContainer.nativeElement.scrollTop =
+      this.messagesContainer.nativeElement.scrollHeight;
+  } catch (err) {
+    console.error('Error al hacer scroll:', err);
+  }
+}
 }

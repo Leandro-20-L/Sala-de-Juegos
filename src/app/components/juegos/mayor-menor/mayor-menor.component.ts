@@ -3,8 +3,8 @@ import { RouterLink } from '@angular/router';
 import Swal from 'sweetalert2';
 
 @Component({
+  standalone: false,
   selector: 'app-mayor-menor',
-  imports: [],
   templateUrl: './mayor-menor.component.html',
   styleUrl: './mayor-menor.component.scss'
 })
@@ -23,15 +23,13 @@ export class MayorMenorComponent {
     this.baraja= [];
     const palos = ['Basto','Espada','Copa','Oro'];
     for (let palo of palos) {
-      for (let i = 0; i <= 12; i++) {
+      for (let i = 1; i <= 12; i++) {
         this.baraja.push({
           valor: i,
           img: `baraja/${palo}/${i}.jpg`
 
-        })
-        
+        }) 
       }
-      
     }
     this.baraja.sort(() => Math.random() - 0.5);
   }
@@ -39,14 +37,16 @@ export class MayorMenorComponent {
   iniciarJuego() {
     this.puntos = 0;
     this.cartaActual = this.baraja.pop() || null;
+    console.log(this.cartaActual?.valor);
     this.sacarNuevaOculta();
   }
 
   sacarNuevaOculta() {
     this.cartaOculta = this.baraja.pop() || null;
+    console.log(this.cartaOculta?.valor);
   }
 
-  elegir(opcion : 'mayor'| 'menor'){
+  elegir(opcion : 'mayor'| 'menor' | 'igual'){
     if (!this.cartaActual || !this.cartaOculta) return;
 
     let acierto = false;
@@ -56,7 +56,10 @@ export class MayorMenorComponent {
     if (opcion === 'menor' && this.cartaOculta.valor <= this.cartaActual.valor) {
       acierto = true;
     }
-
+    if (opcion === 'igual' && this.cartaOculta.valor == this.cartaActual.valor) {
+      acierto = true;
+    }
+    
     if (acierto) {
       this.puntos++;
       this.cartaActual = this.cartaOculta;
@@ -73,5 +76,4 @@ export class MayorMenorComponent {
       });
     }
   }
-  }
-
+}

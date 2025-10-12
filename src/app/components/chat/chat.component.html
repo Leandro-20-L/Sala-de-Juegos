@@ -1,5 +1,5 @@
 <div class="chat-container">
-  <div class="messages" *ngIf="mensajes$ | async as mensajes">
+  <div class="messages" #messagesContainer *ngIf="mensajes$ | async as mensajes">
     <div 
       *ngFor="let msg of mensajes" 
       class="message"

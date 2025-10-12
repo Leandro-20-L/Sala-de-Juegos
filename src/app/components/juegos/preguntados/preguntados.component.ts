@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { PreguntadosService } from '../../services/preguntados.service';
+import { PreguntadosService } from '../../../services/preguntados.service';
 import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
-import { Pregunta } from '../../models/pregunta';
+import { Pregunta } from '../../../models/pregunta';
 
 @Component({
+  standalone : false,
   selector: 'app-preguntados',
-  imports: [CommonModule],
   templateUrl: './preguntados.component.html',
   styleUrl: './preguntados.component.scss'
 })

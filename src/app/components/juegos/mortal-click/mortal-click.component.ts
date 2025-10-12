@@ -4,8 +4,9 @@ import { FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
 
 @Component({
+  standalone:false,
   selector: 'app-mortal-click',
-  imports: [FormsModule,CommonModule,],
+  
   templateUrl: './mortal-click.component.html',
   styleUrl: './mortal-click.component.scss'
 })
