@@ -3,16 +3,30 @@
 
   <div *ngIf="!jugando">
     <h3>Elige un modo:</h3>
-    <button *ngFor="let modo of modos" (click)="iniciarJuego(modo.tiempo)">
+    <button *ngFor="let modo of modos" (click)="iniciarJuego(modo.tiempo, modo.resistencia)">
       {{ modo.nombre }}
     </button>
   </div>
 
   <div *ngIf="jugando">
     <h2>Tiempo: {{ tiempoRestante }}s</h2>
-    <h2>Puntaje: {{ puntaje }}</h2>
+     
+    <div class="barra-contenedor">
+      <div class="barra" [style.width.%]="progreso"></div>
+    </div>
 
-    <button class="click-button" (click)="clickear()"></button>
-    <div class="click-text">CLICK AQUÍ</div>
+    
+    <div class="objeto-container">
+      <img
+        src="maderas.png"
+        alt="MADERA"
+        (click)="clickear()"
+        [class.daño1]="progreso > 30 && progreso < 60"
+        [class.daño2]="progreso >= 60 && progreso < 90"
+        [class.roto]="progreso >= 90"
+      />
+    </div>
+
+    <div class="click-text">¡GOLPEA RÁPIDO!</div>
   </div>
 </div>

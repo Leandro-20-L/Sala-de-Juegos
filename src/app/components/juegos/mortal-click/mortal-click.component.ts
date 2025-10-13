@@ -15,22 +15,27 @@ export class MortalClickComponent {
     puntaje: number = 0;
     jugando: boolean = false;
     interval: any;
+    resistencia: number = 0; 
+    resistenciaInicial: number = 0;
 
      modos = [
-    { nombre: 'Fácil (10s)', tiempo: 10 },
-    { nombre: 'Normal (5s)', tiempo: 5 },
-    { nombre: 'Difícil (2s)', tiempo: 2 }
+    { nombre: 'Fácil (10s)', tiempo: 10, resistencia: 50 },
+    { nombre: 'Normal (5s)', tiempo: 5, resistencia: 75 },
+    { nombre: 'Difícil (2s)', tiempo: 2, resistencia: 100 }
   ];
 
-  iniciarJuego(segundos:number){
+  iniciarJuego(segundos:number , resistencia:number){
     this.tiempoRestante = segundos;
     this.puntaje = 0; 
     this.jugando = true;
+    this.resistencia = resistencia;
+    this.resistenciaInicial= resistencia;
+    
 
     this.interval = setInterval(() => {
       this.tiempoRestante--;
       if(this.tiempoRestante <= 0){
-        this.terminarJuego();
+        this.terminarJuego(false);
 
       }
     },1000)
@@ -39,39 +44,35 @@ export class MortalClickComponent {
   clickear(){
     if (this.jugando) {
       this.puntaje++;
+      this.resistencia -= 2; 
+      if (this.resistencia <= 0) {
+        this.terminarJuego(true); 
+      }
     }
   }
 
-  terminarJuego(){
+  terminarJuego(victoria : boolean){
     clearInterval(this.interval);
     this.jugando = false;
 
-    let mensaje = '';
-    let icono : 'success' | 'error' | 'warning' | 'info' | 'question' = 'info';
-    if (this.puntaje < 10) {
-      mensaje = 'Mediocre';
-      icono = 'error';
-    } else if (this.puntaje < 20) {
-      mensaje = 'Aceptable ⚡';
-      icono = 'warning';
-    } else if (this.puntaje < 30) {
-      mensaje = 'Fuerte 💪';
-      icono = 'info';
-    } else if (this.puntaje < 40) {
-      mensaje = 'Perfecto';
-      icono = 'success';
+    if (victoria) {
+      Swal.fire({
+        title: '🔥 ¡LO ROMPISTE! 🔥',
+        text: 'Tu poder es legendario 💪',
+        icon: 'success',
+        confirmButtonText: 'Reintentar'
+      });
+    } else {
+      Swal.fire({
+        title: '❌ Tiempo agotado',
+        text: 'El objeto resistió tu poder...',
+        icon: 'error',
+        confirmButtonText: 'Reintentar'
+      });
     }
-    else {
-      mensaje = '🔥 ¡CLICK MORTAL! 🔥';
-      icono = 'success';
-    }
-
-     Swal.fire({
-      title: 'Tiempo terminado',
-      text: `Hiciste ${this.puntaje} clicks. ${mensaje}`,
-      icon: icono,
-      confirmButtonText: 'Reintentar'
-    });
     
+  }
+   get progreso() {
+    return ((this.resistenciaInicial - this.resistencia) / this.resistenciaInicial) * 100;
   }
 }

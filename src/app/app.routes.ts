@@ -1,8 +1,5 @@
 import { Routes } from '@angular/router';
-import { PreguntadosComponent } from './components/juegos/preguntados/preguntados.component';
-import { MayorMenorComponent } from './components/juegos/mayor-menor/mayor-menor.component';
-import { MortalClickComponent } from './components/juegos/mortal-click/mortal-click.component';
-import { AhorcadoComponent } from './components/juegos/ahorcado/ahorcado.component';
+
 
 export const routes: Routes = [
      {
