@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { ResultadosService } from '../../../services/resultados.service';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   standalone:false,
@@ -23,6 +25,10 @@ export class MortalClickComponent {
     { nombre: 'Normal (5s)', tiempo: 5, resistencia: 75 },
     { nombre: 'Difícil (2s)', tiempo: 2, resistencia: 100 }
   ];
+  constructor(
+  private resultadosService: ResultadosService,
+  private authService: AuthService
+) {}
 
   iniciarJuego(segundos:number , resistencia:number){
     this.tiempoRestante = segundos;
@@ -51,9 +57,16 @@ export class MortalClickComponent {
     }
   }
 
-  terminarJuego(victoria : boolean){
+  async terminarJuego(victoria : boolean){
     clearInterval(this.interval);
     this.jugando = false;
+
+     try {
+    
+    await this.resultadosService.guardarResultado(this.puntaje, victoria, 'Mortal Click');
+  } catch (error) {
+    console.error('Error al guardar resultado:', error);
+  }
 
     if (victoria) {
       Swal.fire({

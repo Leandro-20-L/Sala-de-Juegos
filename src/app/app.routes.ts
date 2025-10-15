@@ -22,6 +22,9 @@ export const routes: Routes = [
         path: 'chat', loadComponent: () => import('./components/chat/chat.component').then(m => m.ChatComponent)
     },
     {
+        path: 'resultados', loadComponent: () => import('./components/resultados/resultados.component').then(m => m.ResultadosComponent)
+    },
+    {
         path: '',
         redirectTo: 'home',
         pathMatch: 'full'

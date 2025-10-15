@@ -1,0 +1,87 @@
+.resultados-container {
+  text-align: center;
+  padding: 40px 20px;
+  background-color: #f2f6fa;
+  color: #1a2b4b;
+  min-height: 100vh;
+
+  h1 {
+    font-size: 2.2em;
+    margin-bottom: 25px;
+    color: #1f3b73;
+    text-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .boton-vista {
+    margin-bottom: 25px;
+    background: linear-gradient(135deg, #2b68c4, #3f84f2);
+    color: #fff;
+    border: none;
+    padding: 10px 25px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 15px rgba(63, 132, 242, 0.4);
+    }
+  }
+
+  .tabla-resultados {
+    margin: 0 auto;
+    width: 90%;
+    max-width: 900px;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.1);
+    font-size: 0.95rem;
+
+    th, td {
+      padding: 12px 15px;
+      border-bottom: 1px solid #e5e9f2;
+    }
+
+    th {
+      background-color: #2b68c4;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    tr {
+      transition: background-color 0.2s ease;
+
+      &:hover {
+        background-color: #f0f5ff;
+      }
+    }
+
+    tr.gano {
+      background-color: rgba(63, 181, 79, 0.1);
+      color: #187a31;
+      font-weight: 600;
+    }
+
+    tr.perdio {
+      background-color: rgba(255, 86, 86, 0.1);
+      color: #b91c1c;
+      font-weight: 600;
+    }
+  }
+
+  .loading {
+    font-size: 1.2em;
+    color: #1f3b73;
+    margin-top: 20px;
+  }
+
+  .sin-datos {
+    font-size: 1.1em;
+    margin-top: 20px;
+    color: #555;
+  }
+}

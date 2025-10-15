@@ -1,0 +1,39 @@
+<div class="resultados-container">
+
+  <h1> Resultados</h1>
+
+  <button (click)="toggleVista()" class="boton-vista">
+    {{ soloUsuario ? 'Ver todos los jugadores' : 'Ver solo mis resultados' }}
+  </button>
+
+  <div *ngIf="cargando" class="loading">
+    Cargando resultados...
+  </div>
+
+  <table *ngIf="!cargando && resultados.length > 0" class="tabla-resultados">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Email</th>
+        <th>Juego</th>
+        <th>Puntaje</th>
+        <th>Resultado</th>
+        <th>Fecha</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let r of resultados; let i = index" [class]="obtenerClaseResultado(r.resultado)">
+        <td>{{ i + 1 }}</td>
+        <td>{{ r.email }}</td>
+        <td>{{ r.juego }}</td>
+        <td>{{ r.puntaje }}</td>
+        <td>{{ r.resultado }}</td>
+        <td>{{ r.fecha_juego | date:'short' }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="!cargando && resultados.length === 0" class="sin-datos">
+    No hay resultados registrados aún.
+  </div>
+</div>
