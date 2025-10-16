@@ -1,9 +1,11 @@
 import { Routes } from '@angular/router';
+import { authGuard } from './guards/auth.guard';
 
 
 export const routes: Routes = [
      {
         path: 'juegos',
+        canActivate: [authGuard],
         loadChildren: () => import('./components/juegos/juegos.module').then(m => m.JuegosModule)
     },
     {
@@ -22,7 +24,8 @@ export const routes: Routes = [
         path: 'chat', loadComponent: () => import('./components/chat/chat.component').then(m => m.ChatComponent)
     },
     {
-        path: 'resultados', loadComponent: () => import('./components/resultados/resultados.component').then(m => m.ResultadosComponent)
+        path: 'resultados', loadComponent: () => import('./components/resultados/resultados.component').then(m => m.ResultadosComponent),
+        canActivate: [authGuard]
     },
     {
         path: '',
