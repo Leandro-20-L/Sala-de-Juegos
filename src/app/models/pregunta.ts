@@ -6,4 +6,5 @@ export interface Pregunta {
   correctAnswers: string;
   incorrectAnswers: string[];
   opciones?: string[];
+  imagen?: string;
 }

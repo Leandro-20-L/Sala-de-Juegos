@@ -16,10 +16,17 @@
     </button>
   </div>
 
-  <div class="points"><p> Puntaje: {{puntaje}}</p></div>
+  <div class="points">
+    <p>
+    <img src="corazon.png" alt="vida" *ngFor="let vida of [].constructor(vidas)" class="vida-icon">
+  </p>
+    <p> Puntaje: {{puntaje}}</p>
+  </div>
+  <!--
   <div *ngIf="juegoTerminado" class="resultado">
     <p *ngIf="gano">🎉 ¡Ganaste! La palabra era {{ palabra_actual }}</p>
     <p *ngIf="!gano"> Perdiste... La palabra era {{ palabra_actual }}</p>
     <button (click)="nuevaPalabra()">Jugar de nuevo</button>
   </div>
+  -->
 </div>

@@ -1,7 +1,17 @@
 <div *ngIf="preguntas[indice] as pregunta" class="quiz-container">
   <h2 class="quiz-question">
+    
     {{ pregunta.question }}
-    <h3>Puntaje {{puntaje}}/{{preguntas.length}}</h3>
+    <img 
+    *ngIf="pregunta.imagen"
+    [src]="pregunta.imagen" 
+    alt="Imagen relacionada a la pregunta"
+    class="imagen-pregunta"
+  />
+     <div class="quiz-status">
+    <p><img src="corazon.png" alt=""> Vidas: {{ vidas }}</p>
+    <p> Puntaje: {{ puntaje }}</p>
+  </div>
   </h2>
 
   <div class="options">

@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   standalone: false,
@@ -33,6 +34,7 @@ export class AhorcadoComponent implements OnInit {
   juegoTerminado: boolean = false;
   gano: boolean = false;
   puntaje : number = 0; 
+  vidas  : number = 3; 
 
   ngOnInit() {
     this.nuevaPalabra();
@@ -74,15 +76,48 @@ export class AhorcadoComponent implements OnInit {
         this.juegoTerminado = true;
         this.gano = true;
         this.puntaje++;
+        Swal.fire({
+          icon: 'success',
+          title: ' ¡Ganaste!',
+          text: `La palabra era "${this.palabra_actual}"`,
+          confirmButtonText: 'Siguiente palabra',
+          background: '#1a1a1a',
+          color: '#fff'
+        }).then(() => this.nuevaPalabra());
       }
 
     } else {
       this.intentos++;
       if (this.intentos >= this.maxIntentos) {
-        this.juegoTerminado = true;
-        this.gano = false;
-        this.puntaje = 0; 
+       this.vidas--;
+
+        if (this.vidas <= 0) {
+          this.juegoTerminado = true;
+          this.gano = false;
+           Swal.fire({
+            icon: 'error',
+            title: ' Fin del juego',
+            text: 'Te has quedado sin vidas.',
+            confirmButtonText: 'Reiniciar',
+            background: '#1a1a1a',
+            color: '#fff'
+          }).then(() => this.reiniciarJuego());
+        } else {
+           Swal.fire({
+            icon: 'warning',
+            title: ' Fallaste',
+            text: `Perdiste una vida. Te quedan ${this.vidas}`,
+            background: '#1a1a1a',
+            color: '#fff'
+          }).then(() => this.nuevaPalabra());
+        }
+        
       }
     }
+  }
+  reiniciarJuego() {
+    this.puntaje = 0;
+    this.vidas = 3;
+    this.nuevaPalabra();
   }
 }
