@@ -14,7 +14,9 @@ export class PreguntadosService {
   constructor(private http: HttpClient) {}
 
 
-//esta function devuelve un observable
+/*getPreguntas() devuelve un observable que encapsula 
+el resultado combinado de dos observables anidados internamente
+*/
   getPreguntas(limit: number, page: number, categoria: string): Observable<{ questions: Pregunta[] }> {
   const headers = new HttpHeaders({'Authorization': this.apiKey });
 
@@ -26,7 +28,7 @@ export class PreguntadosService {
           this.buscarImagenWikipedia(p.correctAnswers).pipe(
             map((imagenUrl) => ({
               ...p,
-              imagen: imagenUrl || 'assets/imgs/default.jpg'
+              imagen: imagenUrl || 'default.png'
             }))
           )
         );

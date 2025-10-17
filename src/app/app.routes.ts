@@ -28,6 +28,10 @@ export const routes: Routes = [
         canActivate: [authGuard]
     },
     {
+        path: 'encuestas', loadComponent: () => import('./components/encuestas/encuestas.component').then(m => m.EncuestasComponent),
+        canActivate: [authGuard]
+    },
+    {
         path: '',
         redirectTo: 'home',
         pathMatch: 'full'

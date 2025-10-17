@@ -15,6 +15,15 @@ export class ResultadosComponent implements OnInit {
   soloUsuario = false;
   emailUsuario: string | null = null;
 
+  juegos = [
+  { nombre: 'Mortal Click', clase: 'mortal' },
+  { nombre: 'Preguntados', clase: 'preguntados' },
+  { nombre: 'Ahorcado', clase: 'ahorcado' },
+  { nombre: 'Mayor o Menor', clase: 'mayor' }
+];
+
+
+
   constructor(
     private resultadosService: ResultadosService,
     private authService: AuthService
@@ -22,6 +31,10 @@ export class ResultadosComponent implements OnInit {
 
   async ngOnInit() {
     await this.cargarResultados();
+  }
+
+  filtrarPorJuego(nombreJuego: string) {
+  return this.resultados.filter(r => r.juego === nombreJuego);
   }
 
   async cargarResultados() {

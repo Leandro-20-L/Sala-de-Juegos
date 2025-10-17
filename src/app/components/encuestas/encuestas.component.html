@@ -1,0 +1,88 @@
+<div class="encuesta-container">
+  <h2>Encuesta de Satisfacción</h2>
+
+  <form [formGroup]="encuestaForm" (ngSubmit)="enviarEncuesta()">
+   
+    <div class="campo">
+      <label>Nombre y Apellido:</label>
+      <input type="text" formControlName="nombre_apellido" />
+      <small *ngIf="f['nombre_apellido'].invalid && f['nombre_apellido'].touched">
+         Este campo es obligatorio (mínimo 3 caracteres).
+      </small>
+    </div>
+
+    <div class="campo">
+      <label>Edad:</label>
+      <input type="number" formControlName="edad" />
+      <small *ngIf="f['edad'].hasError('required') && f['edad'].touched">
+         La edad es obligatoria.
+      </small>
+      <small *ngIf="f['edad'].hasError('min') || f['edad'].hasError('max')">
+        Debe tener entre 18 y 99 años.
+      </small>
+    </div>
+
+    <div class="campo">
+      <label>Teléfono:</label>
+      <input type="text" formControlName="telefono" maxlength="10" />
+      <small *ngIf="f['telefono'].hasError('required') && f['telefono'].touched">
+         El teléfono es obligatorio.
+      </small>
+      <small *ngIf="f['telefono'].hasError('pattern')">
+         Solo números (máx. 10 dígitos).
+      </small>
+    </div>
+
+    <hr />
+
+  
+    <div class="pregunta">
+      <label> ¿Qué juego de la sala te gustó más?</label>
+      <select formControlName="pregunta1">
+        <option value="">Seleccione una opción</option>
+        <option value="Mortal Click">Mortal Click</option>
+        <option value="Preguntados">Preguntados</option>
+        <option value="Ahorcado">Ahorcado</option>
+        <option value="Mayor o Menor">Mayor o Menor</option>
+      </select>
+      <small *ngIf="f['pregunta1'].invalid && f['pregunta1'].touched">
+        Debe seleccionar una opción.
+      </small>
+    </div>
+
+  
+    <div class="pregunta">
+      <label> ¿Volverías a jugar en esta sala?</label>
+      <div class="radio-group">
+        <label><input type="radio" value="Sí" formControlName="pregunta2" /> Sí</label>
+        <label><input type="radio" value="No" formControlName="pregunta2" /> No</label>
+      </div>
+      <small *ngIf="f['pregunta2'].invalid && f['pregunta2'].touched">
+         Debe seleccionar una respuesta.
+      </small>
+    </div>
+
+    <div class="pregunta">
+      <label> ¿Qué mejoras te gustaría ver en el sitio?</label>
+      <div class="checkbox-group">
+        <label>
+          <input type="checkbox" value="Más juegos" (change)="actualizarCheck($event)" />
+          Más juegos
+        </label>
+        <label>
+          <input type="checkbox" value="Ranking global" (change)="actualizarCheck($event)" />
+          Ranking global
+        </label>
+        <label>
+          <input type="checkbox" value="Modo oscuro" (change)="actualizarCheck($event)" />
+          Modo oscuro
+        </label>
+      </div>
+      <small *ngIf="f['pregunta3'].invalid && f['pregunta3'].touched">
+        Debe elegir al menos una opción.
+      </small>
+    </div>
+
+    <button type="submit" [disabled]="encuestaForm.invalid">Enviar encuesta</button>
+  </form>
+</div>

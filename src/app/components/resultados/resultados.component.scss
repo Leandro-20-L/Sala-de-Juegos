@@ -85,3 +85,27 @@
     color: #555;
   }
 }
+
+.titulo-juego {
+  font-size: 1.6em;
+  margin: 35px 0 15px;
+  font-weight: 700;
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.15);
+  text-transform: capitalize;
+
+  &.mortal {
+    color: #b91c1c;
+  }
+
+  &.preguntados {
+    color: #187a31;
+  }
+
+  &.ahorcado {
+    color: #6b21a8;
+  }
+
+  &.mayor {
+    color: #1d4ed8;
+  }
+}

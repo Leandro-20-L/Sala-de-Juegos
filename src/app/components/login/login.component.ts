@@ -4,16 +4,17 @@ import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router, RouterLink } from '@angular/router';
 import Swal from 'sweetalert2';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
-  imports: [FormsModule,CommonModule,RouterLink],
+  imports: [FormsModule,CommonModule,RouterLink, MatSnackBarModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
 
-  constructor(private authService: AuthService, private router :Router){
+  constructor(private authService: AuthService, private router :Router, private snackBar: MatSnackBar){
 
   }
   
@@ -26,21 +27,21 @@ export class LoginComponent {
     
     try {
       await this.authService.logIn(this.email,this.password);
-      Swal.fire({
-        icon: 'success',
-        title: 'Exito',
-        text: `Bienvenido ${this.email}`,
-        confirmButtonColor: '#3085d6'
-      })
+      this.snackBar.open(`Bienvenido ${this.email}`, 'Cerrar', {
+        duration: 3000,
+        panelClass: ['snackbar-success']
+      });
 
       this.router.navigate(["/home"]);
     } catch (error: any) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Credenciales inválidas',
-        text: error.message || 'El correo o contraseña no son correctos',
-        confirmButtonColor: '#3085d6'
-      })
+       this.snackBar.open(
+        error.message || 'Correo o contraseña incorrectos',
+        'Cerrar',
+        {
+          duration: 3500,
+          panelClass: ['snackbar-error']
+        }
+      );
     }
     
   }

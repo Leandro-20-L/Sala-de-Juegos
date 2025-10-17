@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { ResultadosService } from '../../../services/resultados.service';
 
 @Component({
   standalone: false,
@@ -36,6 +37,8 @@ export class AhorcadoComponent implements OnInit {
   puntaje : number = 0; 
   vidas  : number = 3; 
 
+    constructor(private resultadosService: ResultadosService) {}
+
   ngOnInit() {
     this.nuevaPalabra();
   }
@@ -56,7 +59,7 @@ export class AhorcadoComponent implements OnInit {
 
   //aca se pushea las letras usadas y luego se compara si esta en la palabra actual se la recorre con 
   //un for y se guarda en un nuevo array y lueg  se une con la oculta 
-  verificarLetra(letra: string) {
+  async verificarLetra(letra: string) {
     if (this.juegoTerminado || this.letrasUsadas.includes(letra)) return;
 
     this.letrasUsadas.push(letra);
@@ -73,9 +76,25 @@ export class AhorcadoComponent implements OnInit {
 
       
       if (!this.palabra_oculta.includes("_")) {
-        this.juegoTerminado = true;
-        this.gano = true;
         this.puntaje++;
+
+          if (this.puntaje >= 3) {
+          this.juegoTerminado = true;
+          this.gano = true;
+
+          await this.resultadosService.guardarResultado(this.puntaje, this.gano, 'Ahorcado');
+
+          Swal.fire({
+            icon: 'success',
+            title: '🏆 ¡Victoria!',
+            text: `Adivinaste ${this.puntaje} palabras correctamente.`,
+            confirmButtonText: 'Reiniciar',
+            background: '#1a1a1a',
+            color: '#fff'
+          }).then(() => this.reiniciarJuego());
+
+          return;
+        }
         Swal.fire({
           icon: 'success',
           title: ' ¡Ganaste!',
@@ -84,6 +103,7 @@ export class AhorcadoComponent implements OnInit {
           background: '#1a1a1a',
           color: '#fff'
         }).then(() => this.nuevaPalabra());
+         
       }
 
     } else {
@@ -94,6 +114,8 @@ export class AhorcadoComponent implements OnInit {
         if (this.vidas <= 0) {
           this.juegoTerminado = true;
           this.gano = false;
+          await this.resultadosService.guardarResultado(this.puntaje, this.gano, 'Ahorcado');
+
            Swal.fire({
             icon: 'error',
             title: ' Fin del juego',

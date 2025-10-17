@@ -22,8 +22,8 @@ export class MortalClickComponent {
 
      modos = [
     { nombre: 'Fácil (10s)', tiempo: 10, resistencia: 50 },
-    { nombre: 'Normal (5s)', tiempo: 5, resistencia: 75 },
-    { nombre: 'Difícil (2s)', tiempo: 2, resistencia: 100 }
+    { nombre: 'Normal (5s)', tiempo: 5, resistencia: 50 },
+    { nombre: 'Difícil (3s)', tiempo: 3, resistencia: 50 }
   ];
   constructor(
   private resultadosService: ResultadosService,
@@ -70,14 +70,14 @@ export class MortalClickComponent {
 
     if (victoria) {
       Swal.fire({
-        title: '🔥 ¡LO ROMPISTE! 🔥',
-        text: 'Tu poder es legendario 💪',
+        title: ' ¡LO ROMPISTE! ',
+        text: 'Tu poder es legendario ',
         icon: 'success',
         confirmButtonText: 'Reintentar'
       });
     } else {
       Swal.fire({
-        title: '❌ Tiempo agotado',
+        title: ' Tiempo agotado',
         text: 'El objeto resistió tu poder...',
         icon: 'error',
         confirmButtonText: 'Reintentar'

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import Swal from 'sweetalert2';
+import { ResultadosService } from '../../../services/resultados.service';
 
 @Component({
   standalone: false,
@@ -13,7 +14,11 @@ export class MayorMenorComponent {
   cartaActual: { valor: number, img: string } | null = null;
   cartaOculta: { valor: number, img: string } | null = null;
   puntos: number = 0;
+    vidas: number = 3;
+  gano: boolean = false;
+  juegoTerminado: boolean = false;
 
+  constructor(private resultadosService: ResultadosService) {}
   ngOnInit() {
     this.generarBaraja();
     this.iniciarJuego();
@@ -46,34 +51,66 @@ export class MayorMenorComponent {
     console.log(this.cartaOculta?.valor);
   }
 
-  elegir(opcion : 'mayor'| 'menor' | 'igual'){
+  async elegir(opcion : 'mayor'| 'menor' | 'igual'){
     if (!this.cartaActual || !this.cartaOculta) return;
 
     let acierto = false;
-    if (opcion === 'mayor' && this.cartaOculta.valor >= this.cartaActual.valor) {
-      acierto = true;
-    }
-    if (opcion === 'menor' && this.cartaOculta.valor <= this.cartaActual.valor) {
-      acierto = true;
-    }
-    if (opcion === 'igual' && this.cartaOculta.valor == this.cartaActual.valor) {
-      acierto = true;
-    }
+
+    if (opcion === 'mayor' && this.cartaOculta.valor >= this.cartaActual.valor) acierto = true;
+    if (opcion === 'menor' && this.cartaOculta.valor <= this.cartaActual.valor) acierto = true;
+    if (opcion === 'igual' && this.cartaOculta.valor === this.cartaActual.valor) acierto = true;
     
     if (acierto) {
       this.puntos++;
       this.cartaActual = this.cartaOculta;
       this.sacarNuevaOculta();
+
+      if (this.puntos >= 20) {
+        this.juegoTerminado = true;
+        await this.resultadosService.guardarResultado(this.puntos, true, 'Mayor o Menor');
+        Swal.fire({
+          icon: 'success',
+          title: ' ¡Ganaste!',
+          text: `Adivinaste ${this.puntos} veces correctamente.`,
+          confirmButtonText: 'Jugar de nuevo',
+          background: '#1a1a1a',
+          color: '#fff'
+        }).then(() => {
+          this.generarBaraja();
+          this.iniciarJuego();
+          this.vidas = 3;
+        });
+      }
     } else {
-      Swal.fire({
-        title: '¡Juego terminado!',
-        text: `Fallaste . Tu puntaje fue: ${this.puntos}`,
-        icon: 'error',
-        confirmButtonText: 'Reintentar'
-      }).then(() => {
-        this.generarBaraja();
-        this.iniciarJuego();
-      });
+      this.vidas--;
+
+      if (this.vidas > 0) {
+        Swal.fire({
+          icon: 'warning',
+          title: 'Fallaste',
+          text: `Perdiste una vida. Te quedan ${this.vidas}.`,
+          background: '#1a1a1a',
+          color: '#fff'
+        });
+        this.cartaActual = this.cartaOculta;
+        this.sacarNuevaOculta();
+      } else {
+       
+        this.juegoTerminado = true;
+        await this.resultadosService.guardarResultado(this.puntos, false, 'Mayor o Menor');
+        Swal.fire({
+          icon: 'error',
+          title: ' Fin del juego',
+          text: `Te quedaste sin vidas.\nPuntaje final: ${this.puntos}`,
+          confirmButtonText: 'Reintentar',
+          background: '#1a1a1a',
+          color: '#fff'
+        }).then(() => {
+          this.generarBaraja();
+          this.iniciarJuego();
+          this.vidas = 3;
+        });
+      }
     }
   }
 }
