@@ -52,8 +52,8 @@ export class ChatComponent {
 
   private scrollToBottom(): void {
   try {
-    this.messagesContainer.nativeElement.scrollTop =
-      this.messagesContainer.nativeElement.scrollHeight;
+    this.messagesContainer.nativeElement.scrollTop =// dice qué parte estás viendo.
+      this.messagesContainer.nativeElement.scrollHeight;//scrollHeight largo de los mensajes
   } catch (err) {
     console.error('Error al hacer scroll:', err);
   }

@@ -28,6 +28,10 @@ export class EncuestasComponent {
     return this.encuestaForm.controls;
   }
 
+  /*Llevar la lista de checkboxes que el usuario marcó y 
+  actualiza el formulario para que Angular lo entienda como una respuesta válida.
+  */
+
   actualizarCheck(event: any) {
     const seleccionadas = this.encuestaForm.value.pregunta3 || [];
     if (event.target.checked) {
@@ -47,15 +51,11 @@ export class EncuestasComponent {
       return;
     }
 
-    console.log('✅ Datos enviados:', this.encuestaForm.value);
-
       try {
     const encuesta = this.encuestaForm.value;
-
     
     const nuevaEncuesta = await this.encuestasService.insertarEncuesta(encuesta);
 
-    
     const respuestas = [
       { pregunta: '¿Pregunta 1?', tipo_control: 'radio', respuesta: encuesta.pregunta1 },
       { pregunta: '¿Pregunta 2?', tipo_control: 'select', respuesta: encuesta.pregunta2 },
@@ -64,20 +64,18 @@ export class EncuestasComponent {
 
     await this.encuestasService.insertarRespuestas(nuevaEncuesta.id, respuestas);
 
-    
     Swal.fire({
       icon: 'success',
       title: '¡Gracias por participar!',
-      text: 'Tu encuesta fue enviada correctamente 🎉',
+      text: 'Tu encuesta fue enviada correctamente ',
       confirmButtonText: 'Aceptar',
       background: '#1a1a1a',
       color: '#fff'
     });
-
     this.encuestaForm.reset();
 
   } catch (error) {
-    console.error('❌ Error al guardar encuesta:', error);
+    console.error(' Error al guardar encuesta:', error);
 
     Swal.fire({
       icon: 'error',

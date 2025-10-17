@@ -22,8 +22,6 @@ export class ResultadosComponent implements OnInit {
   { nombre: 'Mayor o Menor', clase: 'mayor' }
 ];
 
-
-
   constructor(
     private resultadosService: ResultadosService,
     private authService: AuthService
