@@ -28,6 +28,46 @@
 
 ---
 
+##  🖼️ Galería visual de los juegos
+
+### 🧠 Preguntados  
+![Preguntados](./public/capturas/preguntados.png)
+
+---
+
+### 🕹️ Mayor o Menor  
+![Mayor o Menor](./public/capturas/mayor-menor.png)
+
+---
+
+### 🧨 Mortal Click  
+![Mortal Click](./public/capturas/mortal-click.png)
+
+---
+
+### 🔤 Ahorcado  
+![Ahorcado](./public/capturas/ahorcado.png)
+
+---
+
+## 💬 Sistema de Chat y Puntuaciones
+
+![Chat de usuarios](./public/capturas/chat.png)
+![Tabla de puntuaciones](./public/capturas/scores.png)
+
+> El chat permite comunicación en tiempo real entre usuarios registrados, mientras que la sección de puntuaciones muestra los mejores resultados guardados en Supabase.
+
+---
+
+## 🔐 Autenticación
+
+- Sistema de **login y registro** conectado a **Supabase**.  
+- Usuarios no autenticados **no pueden acceder** a los juegos (protegidos mediante un `AuthGuard`).  
+- Formularios reactivos con validaciones y alertas visuales.
+
+![Login](./public/capturas/login.png)
+![Registro](./public/capturas/register.png)
+
 ## 🧱 Estructura del proyecto
 
 ```bash
@@ -57,36 +97,12 @@ src/
         ├── chats.png
         └── scores.png
 
-| Juego                 | Descripción                                                                              |
-| --------------------- | ---------------------------------------------------------------------------------------- |
-| 🧠 **Preguntados**    | Juego de preguntas y respuestas con imágenes dinámicas obtenidas desde la Wikipedia API. |
-| 🕹️ **Mayor o Menor** | Adiviná si la siguiente carta será mayor o menor que la actual.                          |
-| 🧨 **Mortal Click**   | Clicks rápidos contra el tiempo, con distintos niveles de dificultad.                    |
-| 🔤 **Ahorcado**       | El clásico juego del ahorcado con palabras aleatorias.                                   |
+| Juego | Descripción |
+|--------|--------------|
+| 🧠 **Preguntados** | Juego de preguntas y respuestas con imágenes dinámicas obtenidas desde la Wikipedia API. |
+| 🕹️ **Mayor o Menor** | Adiviná si la siguiente carta será mayor o menor que la actual. |
+| 🧨 **Mortal Click** | Clicks rápidos contra el tiempo, con distintos niveles de dificultad. |
+| 🔤 **Ahorcado** | El clásico juego del ahorcado con palabras aleatorias. |
 
-🖼️ Galería visual de los juegos
-<div align="center">
-🧠 Preguntados
- <img src="./public/capturas/preguntados.png" width="400" alt="Preguntados" />
-🕹️ Mayor o Menor
- <img src="./public/capturas/mayor-menor.png" width="400" alt="Mayor o Menor" />
-🧨 Mortal Click
- <img src="./public/capturas/mortal-click.png" width="400" alt="Mortal Click" />
-🔤 Ahorcado
- <img src="./public/capturas/ahorcado.png" width="400" alt="Ahorcado" /> </div>
-💬 Sistema de Chat y Puntuaciones
- <div align="center"> <img src="./public/capturas/chate.png" width="400" alt="Chat de usuarios" /> <img src="./public/capturas/scores.png" width="400" alt="Tabla de puntuaciones" /> </div>
+---
 
-El chat permite comunicación en tiempo real entre usuarios registrados, mientras que la sección de puntuaciones muestra los mejores resultados guardados en Supabase.
-
-.
-
-🔐 Autenticación
-
-Sistema de login y registro conectado a Supabase.
-
-Usuarios no autenticados no pueden acceder a los juegos (protegidos mediante un AuthGuard).
-
-Formularios reactivos con validaciones y alertas visuales.
-
- <div align="center"> <img src="./public/capturas/login.png" width="380" alt="Login" /> <img src="./public/capturas/register.png" width="380" alt="Registro" /> </div>
