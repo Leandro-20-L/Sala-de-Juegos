@@ -31,29 +31,29 @@
 ##  🖼️ Galería visual de los juegos
 
 ### 🧠 Preguntados  
-![Preguntados](./public/capturas/preguntados.png)
+![Preguntados](./capturas/preguntados.png)
 
 ---
 
 ### 🕹️ Mayor o Menor  
-![Mayor o Menor](./public/capturas/mayor-menor.png)
+![Mayor o Menor](./capturas/mayor-menor.png)
 
 ---
 
 ### 🧨 Mortal Click  
-![Mortal Click](./public/capturas/mortal-click.png)
+![Mortal Click](./capturas/mortal-click.png)
 
 ---
 
 ### 🔤 Ahorcado  
-![Ahorcado](./public/capturas/ahorcado.png)
+![Ahorcado](./capturas/ahorcado.png)
 
 ---
 
 ## 💬 Sistema de Chat y Puntuaciones
 
-![Chat de usuarios](./public/capturas/chate.png)
-![Tabla de puntuaciones](./public/capturas/scores.png)
+![Chat de usuarios](./capturas/chate.png)
+![Tabla de puntuaciones](./capturas/scores.png)
 
 > El chat permite comunicación en tiempo real entre usuarios registrados, mientras que la sección de puntuaciones muestra los mejores resultados guardados en Supabase.
 
@@ -65,8 +65,8 @@
 - Usuarios no autenticados **no pueden acceder** a los juegos (protegidos mediante un `AuthGuard`).  
 - Formularios reactivos con validaciones y alertas visuales.
 
-![Login](./public/capturas/login.png)
-![Registro](./public/capturas/register.png)
+![Login](./capturas/login.png)
+![Registro](./capturas/register.png)
 
 ## 🧱 Estructura del proyecto
 
