@@ -31,22 +31,22 @@
 ##  🖼️ Galería visual de los juegos
 
 ### 🧠 Preguntados  
-![Preguntados](./capturas/preguntados.png)
+![Preguntados](./public/capturas/preguntados.png)
 
 ---
 
 ### 🕹️ Mayor o Menor  
-![Mayor o Menor](./capturas/mayor-menor.png)
+![Mayor o Menor](./public/capturas/mayor-menor.png)
 
 ---
 
 ### 🧨 Mortal Click  
-![Mortal Click](./capturas/mortal-click.png)
+![Mortal Click](./public/capturas/mortal-click.png)
 
 ---
 
 ### 🔤 Ahorcado  
-![Ahorcado](./capturas/ahorcado.png)
+![Ahorcado](./public/capturas/ahorcado.png)
 
 ---
 
@@ -65,8 +65,8 @@
 - Usuarios no autenticados **no pueden acceder** a los juegos (protegidos mediante un `AuthGuard`).  
 - Formularios reactivos con validaciones y alertas visuales.
 
-![Login](./capturas/login.png)
-![Registro](./capturas/register.png)
+![Login](./public/capturas/login.png)
+![Registro](./public/capturas/register.png)
 
 ## 🧱 Estructura del proyecto
 
