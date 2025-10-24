@@ -52,7 +52,7 @@
 
 ## 💬 Sistema de Chat y Puntuaciones
 
-![Chat de usuarios](./public/capturas/chat.png)
+![Chat de usuarios](./public/capturas/chate.png)
 ![Tabla de puntuaciones](./public/capturas/scores.png)
 
 > El chat permite comunicación en tiempo real entre usuarios registrados, mientras que la sección de puntuaciones muestra los mejores resultados guardados en Supabase.
